@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Cogito.Web.Pages;
 
-public class IndexModel : PageModel
+public class EntriesModel : PageModel
 {
     public void OnGet()
     {
