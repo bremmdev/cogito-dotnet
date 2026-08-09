@@ -4,7 +4,24 @@
     ViewData["Title"] = "Cogito - Entries";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="title-container">
+    <h1>Entries</h1>
+    <a class="button primary right" href="/entries/new">Create Entry</a>
 </div>
+
+<ul class="entries">
+    @foreach (var entry in Model.Entries)
+    {
+        <li>
+            <span class="flex-between">
+                <h2 class="fit">@entry.Title</h2>
+                <span class="relative sentiment-container">
+                    <span class="mood">@entry.Mood</span>
+                </span>
+            </span>
+
+            <span class="date">@entry.Date</span>
+            <p class="content">@entry.Content</p>
+        </li>
+    }
+</ul>

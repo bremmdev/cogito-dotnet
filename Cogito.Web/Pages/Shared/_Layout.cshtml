@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,15 +8,37 @@
     <title>@ViewData["Title"]</title>
     <script type="importmap"></script>
 </head>
+
 <body>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
+    <header class="container header">
+        <span class="title">Cogito<span class="highlight">.</span>
+        </span>
+        <nav>
+            <ul class="nav-list">
+                <li>
+                    <a href="/">Entries</a>
+                </li>
+                <li>
+                    <a href="/quotes">
+                        quotes
+                    </a>
+                </li>
+                <li>
+                    <a href="/insights">
+                        insights
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="login-container">
+        </div>
+    </header>
+    <main class="container">
+        <Outlet />
+        @RenderBody()
+    </main>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
