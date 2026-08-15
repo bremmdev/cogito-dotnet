@@ -2,3 +2,7 @@ _teach
 
 **/bin/
 **/obj/
+
+Cogito.Web/Data/*.db
+Cogito.Web/Data/*.db-shm
+Cogito.Web/Data/*.db-wal

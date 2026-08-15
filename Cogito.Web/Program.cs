@@ -1,7 +1,12 @@
+using Cogito.Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Add services for the database
+builder.Services.AddScoped<EntryStore>();
 
 var app = builder.Build();
 
