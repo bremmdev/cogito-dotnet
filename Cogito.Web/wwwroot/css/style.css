@@ -375,9 +375,15 @@ h2 {
         stroke: var(--color-error);
     }
 
+    .unknown-sentiment {
+        stroke: var(--color-neutral);
+        opacity: 0.45;
+    }
+
     .positive-sentiment:hover+.mood,
     .neutral-sentiment:hover+.mood,
-    .negative-sentiment:hover+.mood {
+    .negative-sentiment:hover+.mood,
+    .unknown-sentiment:hover+.mood {
         opacity: 1;
 
         @starting-style {

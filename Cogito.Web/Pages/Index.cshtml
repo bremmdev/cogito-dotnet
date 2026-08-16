@@ -16,6 +16,7 @@
             <span class="flex-between">
                 <h2 class="fit">@entry.Title</h2>
                 <span class="relative sentiment-container">
+                    <sentiment-icon sentiment="@entry.Sentiment" />
                     <span class="mood">@(entry.Mood ?? "Unknown")</span>
                 </span>
             </span>
