@@ -4,20 +4,4 @@
     ViewData["Title"] = "Cogito - Quotes";
 }
 
-<div class="title-container">
-    <h1>Quotes</h1>
-    <a class="button primary right" href="/quotes/new">Add Quote</a>
-</div>
-
-<ul class="quotes">
-    @foreach (var quote in Model.Quotes)
-    {
-        <li>
-            <p class="quote-content">@quote.Content</p>
-            @if (quote.Author is not null)
-            {
-                <span class="quote-author">@quote.Author</span>
-            }
-        </li>
-    }
-</ul>
+<h1>Quotes</h1>
