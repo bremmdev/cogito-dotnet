@@ -7,6 +7,7 @@ builder.Services.AddRazorPages();
 
 // Add services for the database
 builder.Services.AddScoped<EntryStore>();
+builder.Services.AddScoped<QuoteStore>();
 
 var app = builder.Build();
 
