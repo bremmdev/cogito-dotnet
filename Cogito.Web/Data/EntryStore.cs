@@ -1,19 +1,12 @@
-using Microsoft.Data.Sqlite;
-
 namespace Cogito.Web.Data;
 
-public class EntryStore(IConfiguration configuration)
+public class EntryStore(SqliteConnectionFactory connections)
 {
-    private readonly string _connectionString =
-        configuration.GetConnectionString("Cogito")
-        ?? throw new InvalidOperationException("Connection string 'Cogito' is not configured.");
-
     public async Task<List<Entry>> GetRecentAsync(int limit)
     {
-        using var connection = new SqliteConnection(_connectionString);
-        await connection.OpenAsync();
+        await using var connection = await connections.OpenAsync();
 
-        var command = connection.CreateCommand();
+        await using var command = connection.CreateCommand();
         command.CommandText =
             """
             SELECT e.id, e.date, e.title, e.content, m.name, m.sentiment
@@ -25,7 +18,7 @@ public class EntryStore(IConfiguration configuration)
         command.Parameters.AddWithValue("$limit", limit);
 
         var entries = new List<Entry>();
-        using var reader = await command.ExecuteReaderAsync();
+        await using var reader = await command.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
             entries.Add(new Entry(

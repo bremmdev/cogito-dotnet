@@ -1,19 +1,12 @@
-using Microsoft.Data.Sqlite;
-
 namespace Cogito.Web.Data;
 
-public class QuoteStore(IConfiguration configuration)
+public class QuoteStore(SqliteConnectionFactory connections)
 {
-    private readonly string _connectionString =
-        configuration.GetConnectionString("Cogito")
-        ?? throw new InvalidOperationException("Connection string 'Cogito' is not configured.");
-
     public async Task<List<Quote>> GetAllAsync()
     {
-        using var connection = new SqliteConnection(_connectionString);
-        await connection.OpenAsync();
+        await using var connection = await connections.OpenAsync();
 
-        var command = connection.CreateCommand();
+        await using var command = connection.CreateCommand();
         command.CommandText =
             """
             SELECT id, content, author
@@ -21,7 +14,7 @@ public class QuoteStore(IConfiguration configuration)
             ORDER BY author COLLATE NOCASE ASC;
             """;
 
-        using var reader = await command.ExecuteReaderAsync();
+        await using var reader = await command.ExecuteReaderAsync();
         var quotes = new List<Quote>();
         while (await reader.ReadAsync())
         {
