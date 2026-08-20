@@ -50,8 +50,8 @@
     <main class="container">
         @RenderBody()
     </main>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/alpine-3-16-2.js" asp-append-version="true"></script>
+    <script defer src="~/js/site.js" asp-append-version="true"></script>
+    <script defer src="~/js/alpine-3.16.2.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

@@ -10,9 +10,9 @@
 </div>
 
 <ul class="entries">
-    @foreach (var entry in Model.Entries)
-    {
-        <li>
+@foreach (var entry in Model.Entries)
+{
+        <li x-data="{ isExpanded: false }">
             <span class="flex-between">
                 <h2 class="fit">@entry.Title</h2>
                 <span class="relative sentiment-container">
@@ -22,7 +22,12 @@
             </span>
 
             <span class="date">@entry.Date</span>
-            <p class="content">@entry.Content</p>
+            <p class="content" x-bind:class="{ 'expanded': isExpanded }">@entry.Content</p>
+            <div class="flex">
+                <button class="button inverted fit read-more" x-on:click="isExpanded = !isExpanded"
+                    x-text="isExpanded ? 'Read less' : 'Read more'">
+                </button>
+            </div>
         </li>
     }
 </ul>

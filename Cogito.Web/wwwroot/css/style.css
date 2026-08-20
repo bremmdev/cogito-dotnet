@@ -39,7 +39,7 @@
     --text-xl: 2rem;
     --text-2xl: 3rem;
     --line-height-base: 1.6;
-    --line-clamp-count: 3;
+    --line-clamp-count: 1;
 
     /* Allow transition to auto */
     interpolate-size: allow-keywords;
