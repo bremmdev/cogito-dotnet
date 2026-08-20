@@ -4,17 +4,52 @@
     ViewData["Title"] = "Cogito - Quotes";
 }
 
-<div class="title-container">
-    <h1>Quotes</h1>
-    <a class="button primary right" href="/quotes/new">Add Quote</a>
+<h1>Quotes</h1>
+
+<div x-data="{ showForm: false }">
+    <div class="flex justify-center">
+        <button class="button primary" x-on:click="showForm = true; $nextTick(() => $refs.content.focus())"
+            x-ref="addQuoteButton">
+            Add Quote
+        </button>
+    </div>
+    <div role="status" aria-live="polite" class="sr-only">
+
+    </div>
+
+    @* Form to add a new quote *@
+    <form onSubmit="" class="quote-form" aria-label="Add Quote" x-show="showForm">
+        <div class="form-control">
+            <label for="content">Content</label>
+            <input type="text" name="content" id="content" spellCheck="false" x-ref="content" />
+        </div>
+
+        <div class="form-control">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" spellCheck="false" />
+        </div>
+
+        <div class="quote-form-actions">
+            <button type="button" class="button secondary" x-on:click="showForm = false; $refs.addQuoteButton.focus()">
+                Cancel
+            </button>
+            <button type="submit" class="button primary">
+                Save Quote
+            </button>
+        </div>
+
+        <div class="error" role="alert">
+        </div>
+    </form>
 </div>
 
+@* List of quotes *@
 <ul class="quotes">
-@foreach (var quote in Model.Quotes)
-{
+    @foreach (var quote in Model.Quotes)
+    {
         <li>
             <span class="quote-content">@quote.Content</span>
             <span class="quote-author">@quote.Author</span>
         </li>
-}
+    }
 </ul>
